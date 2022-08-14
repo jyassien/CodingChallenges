@@ -50,6 +50,8 @@ function optimizedSort(arr) {
   }
   console.log("Sorted Array: ", arr);
   console.log("Number of Iteration: ", count);
+  //   let midIndex = Math.trunc(arr.length / 2) ;
+  //   console.log("Median Value: ", arr[midIndex])
 }
 
 optimizedSort(arr);
