@@ -34,7 +34,7 @@ sortAndMiddle(arr);
 //  Median Value:  5.5
 //  Number of iteration:  210
 
-function optimizedSort(arr) {
+function optimizedSorting(arr) {
   let count = 0;
   for (let i = 0; i < arr.length - 1; i++) {
     let minIndex = i;
@@ -54,8 +54,32 @@ function optimizedSort(arr) {
   //   console.log("Median Value: ", arr[midIndex])
 }
 
-optimizedSort(arr);
+optimizedSorting(arr);
 
 //////////// Output //////
 // Sorted Array:  [ -55,  0, 1, 2, 3, 3, 4,  5, 6, 8, 8, 9,23, 67 ]
 //   Number of Iteration:  91
+
+function ultraOptimizedSorting(arr) {
+  let count = 0;
+  for (let i = 0; i < arr.length - 1; i++) {
+    let minIndex = i;
+    for (let j = i + 1; j < arr.length; j++) {
+      count++;
+      if (arr[j] < arr[minIndex]) {
+        minIndex = j;
+      }
+    }
+    if (minIndex != i) {
+      // Make a swap only when a smaller number is found.
+      let temp = arr[i];
+      arr[i] = arr[minIndex];
+      arr[minIndex] = temp;
+    }
+  }
+  console.log("Sorted Array: ", arr);
+  console.log("Number of Iteration: ", count);
+  //   let midIndex = Math.trunc(arr.length / 2) ;
+  //   console.log("Median Value: ", arr[midIndex])
+}
+ultraOptimizedSorting(arr);
