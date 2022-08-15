@@ -71,7 +71,7 @@ function ultraOptimizedSorting(arr) {
       }
     }
     if (minIndex != i) {
-      // Make a swap only when a smaller number is found.
+      // Make a swap only when a smaller element is found.
       let temp = arr[i];
       arr[i] = arr[minIndex];
       arr[minIndex] = temp;
