@@ -1,5 +1,6 @@
 console.log("Counting Sort");
 // Counting sort, does not require comparison. it has worst case of O(n).
+// This functions works for array of elements with a value of x: 0 <= x < 100;
 
 const countingSort = (arr) => {
   let countArr = new Array(100).fill(0);
@@ -19,3 +20,21 @@ let str1000 = `89 37 29 73 68 82 58 45 84 17 88 46 69 60 20 24 34 49 52 80 43 72
 let list1000 = str1000.split(" ").map((x) => +x); // Cover each str numbers to int and add them to the list.
 
 countingSort(list1000);
+
+
+// ////////// OutPut /////////////
+/*
+Counting Sort: each element corresponds to the frequency of its index(value of the given array).
+[
+  11,  4, 11,  8, 10, 12, 10, 10, 12, 10, 11,  8,
+   7,  8,  8,  9,  9, 15, 13, 14, 15,  9,  9, 11,
+  11, 11, 14,  9,  8, 15, 11,  5, 14, 10,  9,  9,
+   8, 18,  6,  7, 12,  7, 14,  7,  6, 18, 15, 13,
+  11,  8,  9,  8,  9, 17, 10, 10,  8, 12, 14,  4,
+  13,  6, 15, 12, 13,  6,  7, 12,  3, 11,  7,  7,
+   8, 10, 12, 13,  9,  6, 11,  9,  3, 12, 14,  6,
+  10,  7, 12,  7, 11,  7,  8,  8, 13,  8,  7, 10,
+  12, 12, 13,  9
+]
+*/
+// ///////////////////////
