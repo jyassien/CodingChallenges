@@ -26,6 +26,7 @@ function sortAndMiddle(arr) {
 
 let arr = [5, 23, 2, 4, 6, 1, 67, 3, 3, 9, 0, -55, 8, 8];
 sortAndMiddle(arr);
+
 //////////// Output //////
 // Arr Length:  14
 //  Mid Index:  7
@@ -72,9 +73,10 @@ function ultraOptimizedSorting(arr) {
     }
     if (minIndex != i) {
       // Make a swap only when a smaller element is found.
-      let temp = arr[i];
-      arr[i] = arr[minIndex];
-      arr[minIndex] = temp;
+      // let temp = arr[i];
+      // arr[i] = arr[minIndex];
+      // arr[minIndex] = temp;
+      [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]]; // Array deconstructor.
     }
   }
   console.log("Sorted Array: ", arr);
