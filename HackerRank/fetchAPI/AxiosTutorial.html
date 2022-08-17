@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)https://zetcode.com/javascript/axios/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Axios tutorial - GET/POST requests in JavaScript with Axios</title>
+
+<link rel="stylesheet" href="./Axios tutorial - GET_POST requests in JavaScript with Axios_files/style.css" type="text/css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="JavaScript, Axios, GET/POST request, Node.js, learn JavaScript">
+<meta name="description" content="Axios tutorial shows how to generage requests in JavaScript
+using Axios client library. Axios is a promise based HTTP client for the browser and Node.js.">
+<meta name="author" content="Jan Bodnar">
+
+<script async="" src="./Axios tutorial - GET_POST requests in JavaScript with Axios_files/analytics.js"></script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5536206-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1073.0" data-gr-ext-installed="">
+
+<header>
+
+<div>
+<a href="https://zetcode.com/" title="Home">ZetCode</a>
+</div>
+
+<nav>
+    <a title="All tutorials" href="https://zetcode.com/all/">All</a>
+    <a title="Go tutorials" href="https://zetcode.com/all/#go">Go</a>
+    <a title="Python tutorials" href="https://zetcode.com/all/#python">Python</a>
+    <a title="C# tutorials" href="https://zetcode.com/all/#csharp">C#</a>
+    <a title="Java tutorials" href="https://zetcode.com/all/#java">Java</a>
+    <a title="JavaScript tutorials" href="https://zetcode.com/all/#js">JavaScript</a>
+    <a title="Subscribe to ZetCode news" href="http://zetcode.us13.list-manage.com/subscribe?u=9def9ccd4c70dbbaf691f90fc&amp;id=6556210f80">Subscribe</a>
+</nav>
+
+</header>
+
+<div class="container">
+
+<div class="ltow">
+    
+<div id="ebooks">
+
+<h2 class="blu">Ebooks</h2>
+
+<ul>
+<li><a href="https://zetcode.com/ebooks/advancedpyqt5/">PyQt5 ebook</a></li>
+<li><a href="https://zetcode.com/ebooks/tkinter/">Tkinter ebook</a></li>
+<li><a href="https://zetcode.com/ebooks/sqlitepython/">SQLite Python</a></li>
+<li><a href="https://zetcode.com/ebooks/advancedwxpython/">wxPython ebook</a></li>
+<li><a href="https://zetcode.com/ebooks/windowsapi/">Windows API ebook</a></li>
+<li><a href="https://zetcode.com/ebooks/advancedjavaswing/">Java Swing ebook</a></li>
+<li><a href="https://zetcode.com/ebooks/javagames/">Java games ebook</a></li>
+<li><a href="https://zetcode.com/ebooks/mysqljava/">MySQL Java ebook</a></li>
+</ul>
+
+</div>
+
+</div>
+
+
+<div class="content">
+
+
+<h1>Axios tutorial</h1>
+
+<p class="last_mod">
+last modified June 19, 2022 
+</p>
+
+<p>
+Axios tutorial shows how to generage requests in JavaScript using Axios client
+library. Check the <a href="https://zetcode.com/javascript/fetch/">JavaScript fetch</a> tutorial
+for an alternative way of creating requests in JavaScript.
+</p>
+
+
+<h2>Axios</h2>
+
+<p>
+<dfn>Axios</dfn> is a promise based HTTP client for the browser and Node.js.
+Axios makes it easy to send asynchronous HTTP requests to REST endpoints and
+perform CRUD operations. It can be used in plain JavaScript or with a library
+such as Vue or React.
+</p>
+
+<p>
+In this article we work with Axios in a Node.js application.
+</p>
+
+<h2>Setting up Axios</h2>
+
+<p>
+First, we install Axios.
+</p>
+
+<pre class="compact" style="position: relative;">$ node -v
+v18.2.0
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+We use Node.js version 18.2.0.
+</p>
+
+<pre class="compact" style="position: relative;">$ npm init -y
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+We initiate a new Node.js application.
+</p>
+
+<pre class="compact" style="position: relative;">$ npm i axios
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+We install Axios with <code>npm i axios</code> command.
+</p>
+
+<div class="ad-top square-fix-ad">
+<script async="" src="./Axios tutorial - GET_POST requests in JavaScript with Axios_files/f.txt"></script>
+<!-- square-fixed-2020 -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-9706709751191532" data-ad-slot="6775384732"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<h2>Axios making requests</h2>
+
+<p>
+There are multiple methods for creating requests in axios.
+</p>
+
+<pre class="compact" style="position: relative;">axios(config) 
+axios(url[, config])
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+These are basic methods for generating requests in axios.
+</p>
+
+<pre class="compact" style="position: relative;">axios.request(config)
+axios.get(url[, config])
+axios.delete(url[, config])
+axios.head(url[, config])
+axios.options(url[, config])
+axios.post(url[, data[, config]])
+axios.put(url[, data[, config]])
+axios.patch(url[, data[, config]])
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+These are method aliases, created for convenience.
+</p>
+
+<h2>Axios Response object</h2>
+
+<p>
+When we send a request to a server, it returns a response. The Axios response object
+consists of:
+</p>
+
+<ul>
+  <li>data - the payload returned from the server</li>
+  <li>status - the HTTP code returned from the server</li>
+  <li>statusText - the HTTP status message returned by the server</li>
+  <li>headers - headers sent by server</li>
+  <li>config - the original request configuration</li>
+  <li>request - the request object</li>
+</ul>
+
+<h2>Axios GET request with callbacks</h2>
+
+<p>
+In the first example, we create a simple GET request. We use callbacks.
+</p>
+
+<div class="codehead">main.js</div>
+<pre class="code" style="position: relative;">const axios = require('axios');
+
+axios.get('http://webcode.me').then(resp =&gt; {
+
+    console.log(resp.data);
+});
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+We generate a simple GET request and show the output.
+</p>
+
+<pre class="explanation" style="position: relative;">const axios = require('axios');
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+The Axios library is included.
+</p>
+
+<pre class="explanation" style="position: relative;">axios.get('http://webcode.me').then(resp =&gt; {
+
+    console.log(resp.data);
+});
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+With <code>get</code>, we send a GET request. We output the data from the
+response. The data is HTML code.
+</p>
+
+<pre class="compact" style="position: relative;">$ node main.js
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt;
+    &lt;title&gt;My html page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;p&gt;
+        Today is a beautiful day. We go swimming and fishing.
+    &lt;/p&gt;
+
+    &lt;p&gt;
+          Hello there. How are you?
+    &lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+
+<div class="ad-mid square-fix-ad">
+<script async="" src="./Axios tutorial - GET_POST requests in JavaScript with Axios_files/f.txt"></script>
+<!-- square-fixed-2020 -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-9706709751191532" data-ad-slot="6775384732"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+
+<h2>Axios GET request with async/await</h2>
+
+<p>
+The following example creates the same request. This time
+we use <code>async/await</code> syntax.
+</p>
+
+<div class="codehead">main.js</div>
+<pre class="code" style="position: relative;">const axios = require('axios');
+
+async function doGetRequest() {
+
+  let res = await axios.get('http://webcode.me');
+
+  let data = res.data;
+  console.log(data);
+}
+
+doGetRequest();
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+The example creates a simple GET request utilizing <code>async/await</code>
+syntax.
+</p>
+
+<h2>Axios basic API</h2>
+
+<p>
+The <code>get</code>, <code>post</code>, or <code>delete</code> methods are
+convenience methods for the basic axios API: <code>axios(config)</code>
+and <code>axios(url, config)</code>.
+</p>
+
+<div class="codehead">main.js</div>
+<pre class="code" style="position: relative;">const axios = require('axios');
+
+async function makeRequest() {
+
+    const config = {
+        method: 'get',
+        url: 'http://webcode.me'
+    }
+
+    let res = await axios(config)
+
+    console.log(res.status);
+}
+
+makeRequest();
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+The example creates a GET request to <code>webcode.me</code>.
+</p>
+
+<pre class="explanation" style="position: relative;">const config = {
+    method: 'get',
+    url: 'http://webcode.me'
+}
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+We specify the details of the request in the configuration object.
+</p>
+
+<h2>Axios HEAD request</h2>
+
+<p>
+A HEAD request is a GET request without a message body. In Axios, a HEAD
+request is created with <code>head</code>.
+</p>
+
+<div class="codehead">main.js</div>
+<pre class="code" style="position: relative;">const axios = require('axios');
+
+async function doHeadRequest() {
+
+  let res = await axios.head('http://webcode.me');
+
+  console.log(`Status: ${res.status}`)
+  console.log(`Server: ${res.headers.server}`)
+  console.log(`Date: ${res.headers.date}`)
+}
+
+doHeadRequest();
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+The example shows the status, server name, response date from
+a response generated with a HEAD request.
+</p>
+
+<pre class="compact" style="position: relative;">$ node main.js
+Status: 200
+Server: nginx/1.6.2
+Date: Sun, 19 Jun 2022 12:49:06 GMT
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+
+<h2>Axios status code</h2>
+
+<p>
+HTTP response status codes indicate whether a specific HTTP request has been
+successfully completed. Responses are grouped in five classes:
+</p>
+
+<ul>
+    <li>Informational responses (100–199)</li>
+    <li>Successful responses (200–299)</li>
+    <li>Redirects (300–399)</li>
+    <li>Client errors (400–499)</li>
+    <li>Server errors (500–599)</li>
+</ul>
+
+<div class="codehead">main.js</div>
+<pre class="code" style="position: relative;">const axios = require('axios');
+
+async function makeRequest() {
+
+    const config = {
+        method: 'head',
+        url: 'http://webcode.me'
+    }
+
+    let res = await axios(config)
+
+    console.log(res.status);
+}
+
+makeRequest();
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+We get the status code from the <code>status</code> property of the response.
+</p>
+
+<pre class="compact" style="position: relative;">$ node main.js
+200
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+
+<h2>Axios custom header</h2>
+
+<p>
+In the following example, we send a custom header.
+</p>
+
+<div class="codehead">main.js</div>
+<pre class="code" style="position: relative;">const axios = require('axios');
+
+async function makeRequest() {
+
+    const config = {
+        method: 'get',
+        url: 'http://webcode.me',
+        headers: { 'User-Agent': 'Axios - console app' }
+    }
+
+    let res = await axios(config)
+
+    console.log(res.request._header);
+}
+
+makeRequest();
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+The example sends a customized header.
+</p>
+
+<pre class="explanation" style="position: relative;">const config = {
+    method: 'get',
+    url: 'http://webcode.me',
+    headers: { 'User-Agent': 'Axios- console app' }
+}
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+The custom data is added to the <code>headers</code> attribute of the
+configuration object.
+</p>
+
+<pre class="explanation" style="position: relative;">console.log(res.request._header);
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+We verify the sent data.
+</p>
+
+<pre class="compact" style="position: relative;">$ node main.js
+GET / HTTP/1.1
+Accept: application/json, text/plain, */*
+User-Agent: Console app
+Host: webcode.me
+Connection: close
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+
+<h2>Axios GET request query parameters</h2>
+
+<p>
+In the following example, we append some query parameters to the URL. 
+</p>
+
+<div class="codehead">main.js</div>
+<pre class="code" style="position: relative;">const axios = require('axios');
+const url = require('url');
+
+async function doGetRequest() {
+
+    let payload = { name: 'John Doe', occupation: 'gardener' };
+
+    const params = new url.URLSearchParams(payload);
+
+    let res = await axios.get(`http://httpbin.org/get?${params}`);
+
+    let data = res.data;
+    console.log(data);
+}
+
+doGetRequest();
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+We use the <code>URLSearchParams</code> of the <code>url</code> module to
+transform the JSON object into suitable URL query form. 
+</p>
+
+<pre class="compact" style="position: relative;">$ node main.js
+{
+  args: { name: 'John Doe', occupation: 'gardener' },
+  headers: {
+    Accept: 'application/json, text/plain, */*',
+    Host: 'httpbin.org',
+    'User-Agent': 'axios/0.21.1',
+    'X-Amzn-Trace-Id': 'Root=1-6023ba22-48b1ff807ea9d934457abbcd'
+  },
+  ...
+  url: 'http://httpbin.org/get?name=John+Doe&amp;occupation=gardener'
+}
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+
+<h2>Getting Github information</h2>
+
+<p>
+Many online services contain public APIs. In the following example,
+we generate a request to a Github API.
+</p>
+
+<div class="codehead">main.js</div>
+<pre class="code" style="position: relative;">const axios = require('axios');
+
+async function getNumberOfFollowers() {
+
+  let res = await axios.get('https://api.github.com/users/janbodnar');
+
+  let nOfFollowers = res.data.followers;
+  let location = res.data.location;
+
+  console.log(`# of followers: ${nOfFollowers}`)
+  console.log(`Location: ${location}`)
+}
+
+getNumberOfFollowers();
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+In the example, we get the number of followers and location of a user.
+</p>
+
+<pre class="compact" style="position: relative;">$ node main.js 
+# of followers: 324
+Location: Bratislava
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+
+<h2>Axios POST JSON request</h2>
+
+<p>
+A POST request is created with <code>post</code> method.
+</p>
+
+<p>
+Axios automatically serializes JavaScript objects to JSON when passed to the  
+<code>post</code> function as the second parameter; we do not need to serialize
+POST bodies to JSON.
+</p>
+
+
+<div class="codehead">main.js</div>
+<pre class="code" style="position: relative;">const axios = require('axios');
+
+async function doPostRequest() {
+
+    let payload = { name: 'John Doe', occupation: 'gardener' };
+
+    let res = await axios.post('http://httpbin.org/post', payload);
+
+    let data = res.data;
+    console.log(data);
+}
+
+doPostRequest();
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+The example creates a POST request to an online testing service. The payload 
+is the second parameter to the <code>post</code> function.
+</p>
+
+<pre class="compact" style="position: relative;">$ node main.js
+{
+  args: {},
+  data: '{"name":"John Doe","occupation":"gardener"}',
+  files: {},
+  form: {},
+  headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Length': '43',
+      'Content-Type': 'application/json',
+      Host: 'httpbin.org',
+      'User-Agent': 'axios/0.27.2',
+      'X-Amzn-Trace-Id': 'Root=1-62af1bac-13b255536674047051875828'
+  },
+  json: { name: 'John Doe', occupation: 'gardener' },
+  ...
+  url: 'http://httpbin.org/post'
+}
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+
+<h2>Axios POST FORM request</h2>
+
+<p>
+In the following example, we generate a POST request with form data.
+</p>
+
+<pre class="compact" style="position: relative;">$ npm i form-data
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+We install the <code>form-data</code> module.
+</p>
+
+<p>
+With application/x-www-form-urlencoded the data is sent in the body of the
+request; the keys and values are encoded in key-value tuples separated by
+'&amp;', with a '=' between the key and the value. 
+</p>
+
+<div class="codehead">main.js</div>
+<pre class="code" style="position: relative;">const axios = require('axios');
+const FormData = require('form-data');
+
+async function doPostRequest() {
+
+    const form_data = new FormData();
+    form_data.append('name', 'John Doe');
+    form_data.append('occupation', 'gardener');
+
+    let res = await axios.post('http://httpbin.org/post', form_data, 
+        { headers: form_data.getHeaders() });
+
+    let data = res.data;
+    console.log(data);
+}
+
+doPostRequest();
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+To produce form data in the appropriate format, we use the FormData object. 
+</p>
+
+<pre class="compact" style="position: relative;">$ node main.js
+{
+  args: {},
+  data: '',
+  files: {},
+  form: { name: 'John Doe', occupation: 'gardener' },
+  headers: {
+    Accept: 'application/json, text/plain, */*',
+    'Content-Length': '284',
+    'Content-Type': 'multipart/form-data; boundary=--------------------------487292688876562281304473',
+    Host: 'httpbin.org',
+    'User-Agent': 'axios/0.27.2',
+    'X-Amzn-Trace-Id': 'Root=1-62af1c03-32fb934410edf8130cabe019'
+  },
+  json: null,
+  ...
+  url: 'http://httpbin.org/post'
+}
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+
+<h2>Axios download image</h2>
+
+<p>
+The following example shows how to download an image with Axios.
+</p>
+
+<div class="codehead">main.js</div>
+<pre class="code" style="position: relative;">const axios = require('axios');
+const fs = require('fs');
+
+var config = {
+    responseType: 'stream'
+};
+
+let url = 'https://images.dog.ceo/breeds/setter-english/n02100735_4870.jpg';
+
+async function getImage() {
+
+    let resp = await axios.get(url, config);
+    resp.data.pipe(fs.createWriteStream('image.jpg'));
+}
+
+getImage();
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+The example retrieves an image from an online service, which keeps images of dogs.
+</p>
+
+<pre class="explanation" style="position: relative;">const axios = require('axios');
+const fs = require('fs');
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+We include <code>axios</code> and <code>fs</code> modules.
+</p>
+
+<pre class="explanation" style="position: relative;">var config = {
+    responseType: 'stream'
+};
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+We specify the response type in the configuration object.
+</p>
+
+<pre class="explanation" style="position: relative;">let resp = await axios.get(url, config);
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+We get the image.
+</p>
+
+<pre class="explanation" style="position: relative;">resp.data.pipe(fs.createWriteStream('image.jpg'));
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+With the help of the <code>fs</code> module, we save the image to disk.
+</p>
+
+
+<h2>Axios multiple requests</h2>
+
+<p>
+We can create multiple requests in one shot with Axios.
+</p>
+
+<div class="codehead">main.js</div>
+<pre class="code" style="position: relative;">const axios = require('axios');
+
+async function doRequests(urls) {
+
+    const fetchUrl = (url) =&gt; axios.get(url);
+    const promises = urls.map(fetchUrl);
+
+    let responses = await Promise.all(promises);
+
+    responses.forEach(resp =&gt; {
+        let msg = `${resp.config.url} -&gt; ${resp.headers.server}: ${resp.status}`;
+        console.log(msg);
+    });
+}
+
+let urls = [
+    'http://webcode.me',
+    'https://example.com',
+    'http://httpbin.org',
+    'https://clojure.org',
+    'https://fsharp.org',
+    'https://symfony.com',
+    'https://www.perl.org',
+    'https://www.php.net',
+    'https://www.python.org',
+    'https://code.visualstudio.com',
+    'https://github.com'
+];
+
+doRequests(urls);
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+The example generates async requests to the given list of urls. It prints
+the web site's url, server name, and status code.
+</p>
+
+<pre class="explanation" style="position: relative;">const fetchUrl = (url) =&gt; axios.get(url);
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+The <code>axios.get</code> makes an async request and returns a promise.
+</p>
+
+<pre class="explanation" style="position: relative;">let responses = await Promise.all(promises);
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+We collect all promises with <code>Promise.All</code>. The method resolves after
+all of the given promises have either fulfilled or rejected.
+</p>
+
+<pre class="compact" style="position: relative;">$ node multiple_requests.js
+http://webcode.me -&gt; nginx/1.6.2: 200
+https://example.com -&gt; ECS (dcb/7F83): 200
+http://httpbin.org -&gt; gunicorn/19.9.0: 200
+https://clojure.org -&gt; AmazonS3: 200
+https://fsharp.org -&gt; GitHub.com: 200
+https://symfony.com -&gt; cloudflare: 200
+https://www.perl.org -&gt; Combust/Plack (Perl): 200
+https://www.php.net -&gt; myracloud: 200
+https://www.python.org -&gt; nginx: 200
+https://code.visualstudio.com -&gt; Microsoft-IIS/10.0: 200
+https://github.com -&gt; GitHub.com: 200
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+
+<h2>Using Axios with JSON Server</h2>
+
+<p>
+JSON Server is a wonderful tool, which allows us to create fake REST APIs
+easily.
+</p>
+
+<pre class="compact" style="position: relative;">$ npm i -g json-server
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+We install <code>json-server</code>.
+</p>
+
+<div class="codehead">users.json</div>
+<pre class="code" style="position: relative;">{
+  "users": [
+    {
+      "id": 1,
+      "first_name": "Robert",
+      "last_name": "Schwartz",
+      "email": "rob23@gmail.com"
+    },
+    {
+      "id": 2,
+      "first_name": "Lucy",
+      "last_name": "Ballmer",
+      "email": "lucyb56@gmail.com"
+    },
+    {
+      "id": 3,
+      "first_name": "Anna",
+      "last_name": "Smith",
+      "email": "annasmith23@gmail.com"
+    },
+    {
+      "id": 4,
+      "first_name": "Robert",
+      "last_name": "Brown",
+      "email": "bobbrown432@yahoo.com"
+    },
+    {
+      "id": 5,
+      "first_name": "Roger",
+      "last_name": "Bacon",
+      "email": "rogerbacon12@yahoo.com"
+    }
+  ]
+}
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+This is our test data.
+</p>
+
+<h3>Starting JSON server</h3>
+
+<p>
+The JSON server is started with the json-server, which we have installed globally.
+</p>
+
+<pre class="compact" style="position: relative;">$ json-server --watch users.json    
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+The <code>--watch</code> option is used to specify the data for the server.
+</p>
+
+<pre class="compact" style="position: relative;">$ curl localhost:3000/users/2/
+{
+  "id": 2,
+  "first_name": "Lucy",
+  "last_name": "Ballmer",
+  "email": "lucyb56@gmail.com"
+}
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+With the curl command, we get the user with Id 2.
+</p>
+
+
+<h2>Posting a user</h2>
+
+<p>
+We post a new user.
+</p>
+
+<div class="codehead">main.js</div>
+<pre class="code" style="position: relative;">const axios = require('axios');
+
+async function makePostRequest() {
+
+    params = {
+        id: 6,
+        first_name: 'Fred',
+        last_name: 'Blair',
+        email: 'freddyb34@gmail.com'
+      }
+
+    let res = await axios.post('http://localhost:3000/users/', params);
+
+    console.log(res.data);
+}
+
+makePostRequest();
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+The example posts a new user.
+</p>
+
+<pre class="explanation" style="position: relative;">let res = await axios.post('http://localhost:3000/users/', params);
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+The post parameters are passed as the second parameter to the <code>post</code>
+method.
+</p>
+
+
+<h3>Getting users</h3>
+
+<p>
+We get users from the test server.
+</p>
+
+<div class="codehead">main.js</div>
+<pre class="code" style="position: relative;">const axios = require('axios');
+
+async function doGetRequest() {
+
+  let res = await axios.get('http://localhost:3000/users/');
+
+  let data = res.data;
+  console.log(data);
+}
+
+doGetRequest();
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+This program retrieves all users from our test server.
+</p>
+
+<pre class="compact" style="position: relative;">$ node main.js
+[ { id: 1,
+    first_name: 'Robert',
+    last_name: 'Schwartz',
+    email: 'rob23@gmail.com' },
+  { id: 2,
+    first_name: 'Lucy',
+    last_name: 'Ballmer',
+    email: 'lucyb56@gmail.com' },
+  { id: 3,
+    first_name: 'Anna',
+    last_name: 'Smith',
+    email: 'annasmith23@gmail.com' },
+  { id: 4,
+    first_name: 'Robert',
+    last_name: 'Brown',
+    email: 'bobbrown432@yahoo.com' },
+  { id: 5,
+    first_name: 'Roger',
+    last_name: 'Bacon',
+    email: 'rogerbacon12@yahoo.com' },
+  { id: 6,
+    first_name: 'Fred',
+    last_name: 'Blair',
+    email: 'freddyb34@gmail.com' } ]
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+
+<h2>Deleting a user</h2>
+
+<p>
+A resource is deleted with <code>delete</code>.
+</p>
+
+<div class="codehead">main.js</div>
+<pre class="code" style="position: relative;">const axios = require('axios');
+
+async function doDeleteRequest() {
+
+    let res = await axios.delete('http://localhost:3000/users/2/');
+
+    console.log(res.status);
+}
+
+doDeleteRequest();
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+The example deletes the user with Id 2.
+</p>
+
+
+<h2>Axios proxy</h2>
+
+<p>
+A proxy is an intermediary between a client requesting a resource and the server
+providing that resource. 
+</p>
+
+<div class="codehead">main.js</div>
+<pre class="code" style="position: relative;">const axios = require('axios');
+
+async function doGetRequest() {
+
+    let host = 'proxy';
+    let port = 8080;
+
+    const res = await axios.get('http://webcode.me', {
+        proxy: {
+            host: host,
+            port: port 
+        }
+    });
+
+    console.log(res.data);
+}
+
+doGetRequest();
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+
+<p>
+The example creates a web request through a proxy.
+</p>
+
+<p>
+In this article, we have worked with JavaScript Axios module.
+</p>
+
+<!-- TODO error handling, authentication, interceptors -->
+
+<div class="ad-bot hor-fix-ad">
+<script async="" src="./Axios tutorial - GET_POST requests in JavaScript with Axios_files/f.txt"></script>
+<!-- horizontal-fixed-2020 -->
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-9706709751191532" data-ad-slot="2550114901"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+
+<p>
+List <a href="https://zetcode.com/all#js">all JavaScript tutorials</a>.
+</p>
+
+</div> <!-- content -->
+
+<div class="rtow">
+
+<div class="vert-ad">
+<script async="" src="./Axios tutorial - GET_POST requests in JavaScript with Axios_files/f.txt"></script>
+<!-- vertical-2020 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9706709751191532" data-ad-slot="5880603481" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<div class="square-fix-ad ad-rtow">
+<script async="" src="./Axios tutorial - GET_POST requests in JavaScript with Axios_files/f.txt"></script>
+<!-- square-fixed-2020 -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-9706709751191532" data-ad-slot="6775384732"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+</div> <!-- rtow -->
+
+</div> <!-- container -->
+
+<footer>
+
+<nav>
+<a title="Home page" href="https://zetcode.com/">Home</a> 
+<a title="Follow on Facebook" href="https://www.facebook.com/zetcode7/">Facebook</a>
+<a title="Follow on Twitter" href="https://twitter.com/janbodnar">Twitter</a>
+<a title="Visit Github" href="https://github.com/janbodnar">Github</a>
+<a title="Subscribe to ZetCode news" href="http://zetcode.us13.list-manage.com/subscribe?u=9def9ccd4c70dbbaf691f90fc&amp;id=6556210f80">Subscribe</a>
+<a title="Privacy policy" href="https://zetcode.com/privacy">Privacy</a> 
+</nav>
+
+<div>
+<span>© 2007 - 2022 Jan Bodnar</span>
+<span>admin(at)zetcode.com</span>
+</div>
+
+</footer>
+
+
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
