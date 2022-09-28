@@ -1,3 +1,8 @@
+// Given an array of integers, where all elements
+// but one occur twice, find the unique element.
+
+
+
 function lonelyinteger(a) {
   let index = null;
   let isUnique = false;
