@@ -28,3 +28,5 @@ console.log(timeToMilitaryConversion("02:01:00AM"));
 // 02:01:00
 console.log(timeToMilitaryConversion("11:01:00PM"));
 // 23:01:00
+console.log(timeToMilitaryConversion("01:01:00PM"));
+// 13:01:00
