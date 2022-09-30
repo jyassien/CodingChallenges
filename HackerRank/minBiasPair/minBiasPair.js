@@ -1,5 +1,6 @@
 function minimizeBias(ratings) {
-   
+   // Find the minimum bias group that 
+   // can be formed in a group of lists
   let len = ratings.length;
   let addBias = 0;
   for (let i = 0; i < len; i++) {
