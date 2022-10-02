@@ -1,5 +1,7 @@
 const axios = require("axios");
 
+
+// fetch: is a web API, to fetch data from a server.
 // async function getCapitalCity(country) {
 //   fetch(`https://jsonmock.hackerrank.com/api/countries?name=${country}`)
 //     .then((response) => (response = response.json()))
