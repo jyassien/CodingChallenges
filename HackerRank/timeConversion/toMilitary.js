@@ -1,5 +1,7 @@
 function timeToMilitaryConversion(s) {
     // Write your code here
+    // Given a string of time in 12 hours format,
+    // Find the equivalent 24 hours format.
     let str = s;
     let hr = Number(str.substring(0,2))
     let ap = str.substring(8, 9)
