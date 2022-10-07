@@ -8,11 +8,17 @@ function flippingBits(n) {
   let r = 0;
   let flippedDecimal = 0;
 
-  while (n > 0) {
-    r = n % 2;
+do {
+  r = n % 2;
     n = (n - r) / 2;
     bits += r;
-  }
+} while (n > 0);
+
+  // while (n > 0) {
+  //   r = n % 2;
+  //   n = (n - r) / 2;
+  //   bits += r;
+  // }
 
   let new32Bit = bit32.substring(0, 32 - bits.length) + bits;
 
@@ -34,7 +40,7 @@ function flippingBits(n) {
 
   let power = 31;
   for (let i = 0; i < 32; i++) {
-    flippedDecimal += new32BitFlipped[i] * 2 ** power;
+    flippedDecimal += (new32BitFlipped[i] * 2 ** power);
 
     power--;
   }
@@ -45,6 +51,10 @@ function flippingBits(n) {
 
 // flippingBits(4);
 // flippingBits(5);
+// flippingBits(1);
+// flippingBits(9);
+// flippingBits(802743475);
+
+flippingBits(2147483647);
 flippingBits(1);
-flippingBits(9);
-flippingBits(802743475);
+flippingBits(0);
