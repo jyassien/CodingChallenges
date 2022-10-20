@@ -1,4 +1,7 @@
-function balancedParenthesis(str) {
+// Check if the opening and closing parentheses are balanced.
+// Find Each opening parentheses must match with closing parentheses. 
+// Closing parentheses should be preceded by opening parentheses.
+function balancedParentheses(str) {
     let openPar = 0;
     for(let i = 0; i < str.length; i++){
         if(str[i]=="(" ) openPar++;
