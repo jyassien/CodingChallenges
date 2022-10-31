@@ -1,3 +1,8 @@
+// A function that checks whether or not open parenthesis, curly braces and or brackets are balanced.
+// The function should check each open container has a matchin closing container.
+// If balanced return true.
+// If not balanced return false.
+
 function balancedContainers(str) {
   let openCont = [];
   for (let i = 0; i < str.length; i++) {
