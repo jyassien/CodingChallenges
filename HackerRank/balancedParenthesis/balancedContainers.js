@@ -44,5 +44,5 @@ console.log(balancedContainers("[([{}])]")); // true
 console.log(balancedContainers("[[{}])]")); // false
 console.log(balancedContainers("[([{])]")); // false
 
-console.log(balancedContainers("[([{])}]")); // true ,but it hould be false
+console.log(balancedContainers("[([{])}]")); // true ,but it should be false
 console.log(balancedContainers("[(}[{]))]")); // false
