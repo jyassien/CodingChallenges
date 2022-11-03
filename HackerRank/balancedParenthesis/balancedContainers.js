@@ -46,3 +46,26 @@ console.log(balancedContainers("[([{])]")); // false
 
 console.log(balancedContainers("[([{])}]")); // true ,but it should be false
 console.log(balancedContainers("[(}[{]))]")); // false
+
+// Checking whether a string of brackets is balanced or not.
+// For this function 'Stack' data structure is used.
+
+let isBalanced = (input) => {
+  let brackets = "[]{}()<>";
+  let stack = [];
+
+  for (let bracket of input) {
+    let bracketsIndex = brackets.indexOf(bracket);
+
+    if (bracketsIndex % 2 === 0) {
+      stack.push(bracketsIndex + 1);
+    } else {
+      if (stack.pop() !== bracketsIndex) {
+        return false;
+      }
+    }
+  }
+  return stack.length === 0;
+};
+
+console.log("isBalanced", isBalanced("[([{])}]")); // false
