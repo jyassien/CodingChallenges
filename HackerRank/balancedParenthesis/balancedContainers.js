@@ -51,21 +51,22 @@ console.log(balancedContainers("[(}[{]))]")); // false
 // For this function 'Stack' data structure is used.
 
 let isBalanced = (input) => {
-  let brackets = "[]{}()<>";
+  let brackets = "[]{}()<>";   // Comparision array.
   let stack = [];
 
   for (let bracket of input) {
     let bracketsIndex = brackets.indexOf(bracket);
-
-    if (bracketsIndex % 2 === 0) {
-      stack.push(bracketsIndex + 1);
-    } else {
-      if (stack.pop() !== bracketsIndex) {
+      // Find the index of the current bracket.
+    if (bracketsIndex % 2 === 0) {  // Check if the bracket is opening bracket (Even index).
+      stack.push(bracketsIndex + 1); // If true, add its equivalent closing bracket.
+    } else { // If it is a closing bracket,
+      if (stack.pop() !== bracketsIndex) { // Check if the closing bracket matches the last closing bracket element.
         return false;
       }
     }
   }
-  return stack.length === 0;
+  return stack.length === 0; // True only if all brackets have canceled out.
 };
 
 console.log("isBalanced", isBalanced("[([{])}]")); // false
+console.log("isBalanced", isBalanced("[([{}])]")); // true
