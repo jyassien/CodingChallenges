@@ -57,11 +57,11 @@ let isBalanced = (input) => {
   for (let bracket of input) {
     let bracketsIndex = brackets.indexOf(bracket);
       // Find the index of the current bracket.
-    if (bracketsIndex % 2 === 0) {  // Check if the bracket is opening bracket (Even index).
+    if (bracketsIndex % 2 === 0) {  // Check if the current bracket is opening bracket (Even index element).
       stack.push(bracketsIndex + 1); // If true, add its equivalent closing bracket.
     } else { // If it is a closing bracket,
-      if (stack.pop() !== bracketsIndex) { // Check if the closing bracket matches the last closing bracket element.
-        return false;
+      if (stack.pop() !== bracketsIndex) { // Check if the current closing bracket doesn't match the last closing bracket element.
+        return false;     // IF it doesn't match retrun false.
       }
     }
   }
