@@ -1,11 +1,11 @@
 function pangrams(s) {
   // A pangram is a string that contains every letter of the alphabet.
-  s = s.toLowerCase(); // 97 to 122
-  let alpha = "abcdefghijklmnopqrstuvwxyz";
+  s = s.toLowerCase(); // Change the argument string to lower cases.   
+  let alpha = "abcdefghijklmnopqrstuvwxyz";  // Comparision string. 
 
-  if (s.length < 26) return "not pangram";
+  if (s.length < 26) return "not pangram";  // If the string is less character than the actual english alphabet, return 'non pangrams'
   for (let i = 0; i < alpha.length; i++) {
-    if (s.includes(alpha[i])) continue;
+    if (s.includes(alpha[i])) continue; // If each alphabet letter are included in the string, skip the current loop.
     else return "not pangram";
   }
   return "pangram";
