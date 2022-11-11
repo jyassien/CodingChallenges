@@ -1,4 +1,6 @@
 // Analyze an aray of a records of temperature to find the closest to zero.
+// If to numbers are equal distance, the positive number will be choosen.
+// If no Temprature value is given, return 0.
 
 function computeClosestToZero(temp) {
   if (temp.length === 0) return 0;
@@ -20,7 +22,7 @@ function computeClosestToZero(temp) {
   return temp[closest];
 }
 
-console.log(computeClosestToZero([3, 23, -5, 7]));  // 3
-console.log(computeClosestToZero([]));              // 0 
+console.log(computeClosestToZero([3, 23, -5, 7])); // 3
+console.log(computeClosestToZero([])); // 0
 console.log(computeClosestToZero([6, -43, -6, 37])); // 6
 console.log(computeClosestToZero([-4, -43, -2, 37])); // -2
