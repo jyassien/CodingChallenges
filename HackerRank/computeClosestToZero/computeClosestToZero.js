@@ -3,23 +3,23 @@
 // If no Temprature value is given, return 0.
 
 function computeClosestToZero(temp) {
-  if (temp.length === 0) return 0;
+  if (temp.length === 0) return 0;    // Check if the array is empty before proceeding.
 
-  let minT = Math.abs(temp[0]);
-  let closest = temp.indexOf(minT);
+  let minT = Math.abs(temp[0]);     // Initialize minimum temp to the first element of array.
+  let closest = temp.indexOf(minT); // Initialize the closest temp to first index of array.
 
   for (let i = 0; i < temp.length; i++) {
     let current = Math.abs(temp[i]);
     if (minT > current) {
-      minT = current;
-      closest = temp.indexOf(temp[i]);
-    } else if (minT === current) {
-      if (temp[i] > 0) {
+      minT = current;           // When another closest temp is found, assign it to the minimum temp.
+      closest = temp.indexOf(temp[i]);    // Update the closest index number.
+    } else if (minT === current) {    // If two tempratures are of the same amount,
+      if (temp[i] > 0) {              // select the one that has positive value.
         closest = temp.indexOf(current);
       }
     }
   }
-  return temp[closest];
+  return temp[closest];       // Return the first positive closest temp value of the given temp array.
 }
 
 console.log(computeClosestToZero([3, 23, -5, 7])); // 3
