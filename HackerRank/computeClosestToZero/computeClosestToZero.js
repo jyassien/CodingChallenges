@@ -19,7 +19,7 @@ function computeClosestToZero(temp) {
       }
     }
   }
-  return temp[closest];       // Return the first positive closest temp value of the given temp array.
+  return temp[closest];       // Return the closest to zero temp value in the given array of temperatures.
 }
 
 console.log(computeClosestToZero([3, 23, -5, 7])); // 3
